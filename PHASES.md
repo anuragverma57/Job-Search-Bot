@@ -2,13 +2,19 @@
 
 ## Current Status
 
-**Phase:** 0 — Foundation
+**Phase:** 1 — Discovery + Dedup
 **State:** Not started
 
-**Blocked on:** nothing
-**Next session:** implement Phase 0
+- [ ] Greenhouse collector
+- [ ] Lever collector
+- [ ] Ashby collector
 
-**Done:** none
+**Blocked on:** need company board slugs in `config.json` → `platforms.boards`
+**Next session:** implement Greenhouse collector first, verify end-to-end, then Lever, then Ashby
+
+**Done:** Phase 0 (commit `8ffbbbe`) — 20/20 verification checks passed
+
+**Before Phase 6:** fill `profile` and `answerBank` in `config.json`
 
 ---
 
@@ -26,12 +32,12 @@ bot must be safe before it is fast.**
 
 **Goal:** an empty project that runs, stores data, and keeps secrets out of git.
 
-- [ ] `npm init`, install: `playwright`, `better-sqlite3`, `express`, `dotenv`, `openai`, `node-cron`
-- [ ] `.gitignore` with `.env`, `data/`, `screenshots/`, `node_modules/` — **before the first commit**
-- [ ] `.env.example` documenting every key, committed; real `.env` never committed
-- [ ] `config.js` — loads env + a `config.json` for preferences (keywords, experience range, locations, blocklist, caps)
-- [ ] SQLite schema and migration runner
-- [ ] Logger writing to console + rotating file
+- [x] `npm init` + `better-sqlite3`, `dotenv` (later deps added in the phase that needs them)
+- [x] `.gitignore` with `.env`, `data/`, `screenshots/`, `node_modules/` — **before the first commit**
+- [x] `.env.example` documenting every key, committed; real `.env` never committed
+- [x] `config.js` — loads env + a `config.json` for preferences (keywords, experience range, locations, blocklist, caps)
+- [x] SQLite schema and migration runner
+- [x] Logger writing to console + rotating file
 
 **Schema (v1):**
 
@@ -61,7 +67,12 @@ runs (
 )
 ```
 
-**Done when:** `npm start` connects to the DB, writes a log line, and exits clean.
+**Done when:** `npm start` connects to the DB, writes a log line, and exits clean. ✅
+
+*Schema as built differs slightly from the sketch above: `applications` gained
+`dry_run`, `confirmation_text`, and `unanswered_question`; `jobs` gained
+`filter_reason`; a `platform_health` table was added for consecutive-failure
+tracking. See `src/db/schema.sql`.*
 
 ---
 
