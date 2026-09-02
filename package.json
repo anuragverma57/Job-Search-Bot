@@ -12,7 +12,8 @@
     "evaluate": "node src/index.js evaluate",
     "apply": "node src/index.js apply",
     "dashboard": "node src/index.js dashboard",
-    "status": "node src/index.js status"
+    "status": "node src/index.js status",
+    "test": "node test/normalize.test.js"
   },
   "dependencies": {
     "better-sqlite3": "^12.4.1",

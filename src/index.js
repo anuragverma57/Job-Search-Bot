@@ -5,11 +5,9 @@ const logger = require('./logger');
 const db = require('./db');
 
 const NOT_YET_BUILT = {
-  discover: 'Phase 1',
   evaluate: 'Phase 3',
   apply: 'Phase 6',
   dashboard: 'Phase 2',
-  status: 'Phase 8',
 };
 
 function showStatus() {
@@ -34,7 +32,7 @@ function showStatus() {
   }
 }
 
-function main() {
+async function main() {
   const command = process.argv[2] || 'status';
 
   logger.info(`Running: ${command}`);
@@ -50,13 +48,20 @@ function main() {
         showStatus();
         break;
 
+      case 'discover': {
+        db.migrate();
+        const { discover } = require('./discover');
+        await discover();
+        break;
+      }
+
       default:
         if (NOT_YET_BUILT[command]) {
           logger.warn(`"${command}" is not implemented yet — arrives in ${NOT_YET_BUILT[command]}.`);
           break;
         }
         logger.error(`Unknown command: ${command}`);
-        logger.info(`Available: migrate, status, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
+        logger.info(`Available: migrate, status, discover, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
         process.exitCode = 1;
     }
   } catch (err) {

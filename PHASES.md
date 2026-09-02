@@ -2,17 +2,13 @@
 
 ## Current Status
 
-**Phase:** 1 — Discovery + Dedup
+**Phase:** 2 — Dashboard (read-only)
 **State:** Not started
 
-- [ ] Greenhouse collector
-- [ ] Lever collector
-- [ ] Ashby collector
+**Blocked on:** nothing
+**Next session:** Express server + single server-rendered page over the 1113 jobs already in the DB
 
-**Blocked on:** need company board slugs in `config.json` → `platforms.boards`
-**Next session:** implement Greenhouse collector first, verify end-to-end, then Lever, then Ashby
-
-**Done:** Phase 0 (commit `8ffbbbe`) — 20/20 verification checks passed
+**Done:** Phase 0 (`8ffbbbe`), Phase 1 — 1113 jobs discovered, 0 on re-run, 33 dedup tests passing
 
 **Before Phase 6:** fill `profile` and `answerBank` in `config.json`
 
@@ -80,15 +76,17 @@ tracking. See `src/db/schema.sql`.*
 
 **Goal:** the bot finds real jobs and never shows you the same one twice.
 
-- [ ] Collector interface: `search(criteria) -> Job[]`
-- [ ] Greenhouse collector (start here — simplest, public JSON on many boards)
-- [ ] Lever collector
-- [ ] Ashby collector
-- [ ] Canonical key: normalize company (strip Inc/Ltd/Pvt/punctuation/case) + title (keep seniority, drop "(Remote)" noise) + location
-- [ ] Insert-if-new logic keyed on `canonical_key`
-- [ ] CLI: `npm run discover`
+- [x] Collector interface: `search(slugs, options) -> { jobs, deadSlugs, errors }`
+- [x] Greenhouse collector (public JSON API, `content=true` gives descriptions in one call)
+- [x] Lever collector (public postings API, plaintext descriptions included)
+- [x] Ashby collector (GraphQL, two calls: board list + per-posting detail)
+- [x] Canonical key: normalize company (strip Inc/Ltd/Pvt/punctuation/case) + title (keep seniority, drop "(Remote)" noise) + location
+- [x] Insert-if-new logic keyed on `canonical_key`
+- [x] CLI: `npm run discover`
+- [x] Regression suite: `npm test` (33 assertions)
 
-**Done when:** running twice in a row discovers N jobs the first time and 0 the second.
+**Done when:** running twice in a row discovers N jobs the first time and 0 the second. ✅
+*Verified: run 1 = 1113 new / 21 dup, run 2 = 0 new / 1134 dup.*
 
 **Watch out:** this is where you learn each platform's quirks. Budget more time than you think. Do one platform completely before starting the next.
 

@@ -46,10 +46,24 @@
     "tier1": ["greenhouse", "lever", "ashby"],
     "tier2": ["wellfound", "linkedin", "naukri"],
     "boards": {
-      "_comment": "Company board slugs to poll, added in Phase 1.",
-      "greenhouse": [],
-      "lever": [],
-      "ashby": []
+      "_comment": "Company board slugs to poll. Ordered by realistic fit for an India-based Java/Spring Boot backend profile — India product companies first, US-only kept last for collector coverage. Slugs verified live; dead ones are removed, see NOTES.md.",
+      "greenhouse": [
+        "groww",
+        "postman",
+        "gitlab",
+        "stripe"
+      ],
+      "lever": [
+        "cred",
+        "zeta",
+        "meesho",
+        "spotify"
+      ],
+      "ashby": [
+        "ramp",
+        "vanta",
+        "linear"
+      ]
     }
   },
 
