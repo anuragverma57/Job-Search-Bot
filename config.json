@@ -1,0 +1,76 @@
+{
+  "_comment": "Search preferences and answer bank. Safe to commit — no secrets here. Edit freely; this is your main tuning surface.",
+
+  "profile": {
+    "name": "",
+    "email": "",
+    "phone": "",
+    "location": "",
+    "linkedin": "",
+    "github": "",
+    "portfolio": "",
+    "yearsOfExperience": 0
+  },
+
+  "search": {
+    "keywords": [
+      "backend engineer",
+      "software engineer",
+      "full stack engineer"
+    ],
+    "requiredSkills": [],
+    "niceToHaveSkills": [],
+    "excludeKeywords": [
+      "intern",
+      "unpaid",
+      "clearance required"
+    ],
+    "experienceRange": { "min": 0, "max": 6 },
+    "locations": ["Remote"],
+    "remoteOnly": false
+  },
+
+  "filter": {
+    "minScoreToPrepare": 7,
+    "maxJobsPerRunToEvaluate": 40,
+    "maxPostingAgeDays": 30
+  },
+
+  "blocklist": {
+    "_comment": "Companies the bot must NEVER auto-submit to. Surfaced for manual handling instead. Put your dream companies here.",
+    "companies": []
+  },
+
+  "platforms": {
+    "_comment": "tier1 = automated submission allowed. tier2 = discovery only, never log in. See PRD.",
+    "tier1": ["greenhouse", "lever", "ashby"],
+    "tier2": ["wellfound", "linkedin", "naukri"],
+    "boards": {
+      "_comment": "Company board slugs to poll, added in Phase 1.",
+      "greenhouse": [],
+      "lever": [],
+      "ashby": []
+    }
+  },
+
+  "answerBank": {
+    "_comment": "Standard application questions. Anything not matched here routes to needs_manual — the bot never guesses.",
+    "workAuthorization": "",
+    "requiresSponsorship": "",
+    "noticePeriod": "",
+    "currentCompensation": "",
+    "expectedCompensation": "",
+    "willingToRelocate": "",
+    "preferredStartDate": "",
+    "howDidYouHear": "Company website",
+    "eeoGender": "Prefer not to say",
+    "eeoRace": "Prefer not to say",
+    "eeoVeteran": "Prefer not to say",
+    "eeoDisability": "Prefer not to say"
+  },
+
+  "followUp": {
+    "daysUntilFollowUp": 7,
+    "daysUntilGhosted": 30
+  }
+}

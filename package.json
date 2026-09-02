@@ -1,0 +1,24 @@
+{
+  "name": "job-apply-bot",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal job application automation tool",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "migrate": "node src/index.js migrate",
+    "discover": "node src/index.js discover",
+    "evaluate": "node src/index.js evaluate",
+    "apply": "node src/index.js apply",
+    "dashboard": "node src/index.js dashboard",
+    "status": "node src/index.js status"
+  },
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "dotenv": "^17.2.3"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
