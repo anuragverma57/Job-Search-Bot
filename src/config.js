@@ -52,10 +52,25 @@ const config = {
   },
 
   ai: {
-    apiKey: process.env.OPENAI_API_KEY || '',
-    cheapModel: process.env.AI_MODEL_CHEAP || 'gpt-4o-mini',
-    smartModel: process.env.AI_MODEL_SMART || 'gpt-4o',
+    // Provider is explicit if AI_PROVIDER is set, otherwise inferred from
+    // whichever key is present. Gemini wins a tie: it has a free tier.
+    provider: (() => {
+      const explicit = String(process.env.AI_PROVIDER || '').trim().toLowerCase();
+      if (explicit) return explicit;
+      if (process.env.GEMINI_API_KEY) return 'gemini';
+      if (process.env.OPENAI_API_KEY) return 'openai';
+      return '';
+    })(),
+    geminiApiKey: process.env.GEMINI_API_KEY || '',
+    openaiApiKey: process.env.OPENAI_API_KEY || '',
+    cheapModel: process.env.AI_MODEL_CHEAP || 'gemini-2.0-flash',
+    smartModel: process.env.AI_MODEL_SMART || 'gemini-2.5-pro',
     monthlyBudgetUsd: floatFromEnv(process.env.AI_MONTHLY_BUDGET_USD, 20),
+    // Free-tier Gemini allows ~15 req/min, so calls are paced.
+    requestDelayMs: intFromEnv(process.env.AI_REQUEST_DELAY_MS, 4500),
+    get apiKey() {
+      return this.provider === 'openai' ? this.openaiApiKey : this.geminiApiKey;
+    },
   },
 
   notifications: {
@@ -113,8 +128,12 @@ config.isBlocked = function isBlocked(company) {
 config.validate = function validate(requirements = []) {
   const problems = [];
 
-  if (requirements.includes('ai') && !config.ai.apiKey) {
-    problems.push('OPENAI_API_KEY is not set (needed from Phase 3).');
+  if (requirements.includes('ai')) {
+    if (!config.ai.provider) {
+      problems.push('No AI key set — add GEMINI_API_KEY (free tier) or OPENAI_API_KEY to .env.');
+    } else if (!config.ai.apiKey) {
+      problems.push(`AI_PROVIDER is "${config.ai.provider}" but its API key is not set.`);
+    }
   }
 
   if (requirements.includes('notifications') && !config.notifications.enabled) {
