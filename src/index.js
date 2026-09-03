@@ -61,6 +61,21 @@ async function main() {
         break;
       }
 
+      case 'run': {
+        db.migrate();
+        const { run } = require('./run');
+        await run();
+        break;
+      }
+
+      case 'notify:test': {
+        const notifier = require('./notifier');
+        const result = await notifier.test();
+        if (result.sent) logger.info('Test notification sent — check Telegram.');
+        else logger.error('Test notification failed', { reason: result.reason });
+        break;
+      }
+
       case 'dashboard': {
         db.migrate();
         require('./dashboard/server').start();
@@ -74,7 +89,7 @@ async function main() {
           break;
         }
         logger.error(`Unknown command: ${command}`);
-        logger.info(`Available: migrate, status, discover, evaluate, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
+        logger.info(`Available: migrate, status, discover, evaluate, run, notify:test, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
         process.exitCode = 1;
     }
   } catch (err) {

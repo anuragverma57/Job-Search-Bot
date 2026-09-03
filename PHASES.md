@@ -2,13 +2,13 @@
 
 ## Current Status
 
-**Phase:** 3 — Filter + AI Evaluation
+**Phase:** 5 — Resume Pipeline
 **State:** Not started
 
-**Blocked on:** `OPENAI_API_KEY` in `.env`
-**Next session:** deterministic pre-filter first (free, no API calls), then AI scoring on survivors
+**Blocked on:** master resume as structured JSON; real LinkedIn/GitHub/portfolio URLs in `config.json`
+**Next session:** master resume JSON, then HTML template to PDF, then tailoring under the no-fabrication rule
 
-**Done:** Phase 0 (`8ffbbbe`), Phase 1 (`6a4f788`), Phase 2 — dashboard live at localhost:3000 over 1113 jobs
+**Done:** Phase 0 (`8ffbbbe`), Phase 1 (`6a4f788`), Phase 2 (`cc11ffd`), Phase 3 (`664bfbb`), Phase 4 — Telegram live via @Zalco_bot
 
 **Before Phase 6:** fill `profile` and `answerBank` in `config.json`
 
@@ -133,11 +133,15 @@ SQL injection attempts safely handled, loopback-only binding confirmed.*
 
 **Goal:** you find out what happened without opening anything.
 
-- [ ] Telegram bot (or email via nodemailer — whichever you'll actually read)
-- [ ] One summary per run: counts, top matches, failures
-- [ ] Alert on 3 consecutive failures for one platform
+- [x] Telegram bot (`@Zalco_bot`)
+- [x] One summary per run: counts, top matches with score + reason, failures
+- [x] Alert on 3 consecutive failures for one platform
+- [x] `npm run notify:test` — connection check
+- [x] `npm run run:all` — full pipeline: discover → evaluate → notify
+- [x] Delivery failure never aborts a run; pipeline errors are themselves notified
 
-**Done when:** a run pings your phone.
+**Done when:** a run pings your phone. ✅
+*Verified: test message, sample summary, and a real end-to-end run all delivered.*
 
 **Why before submission:** you need visibility in place *before* the bot starts doing irreversible things.
 
@@ -235,6 +239,48 @@ will be different from what you'd guess today.
 
 Docker · additional platforms · Wellfound/LinkedIn discovery-only collectors ·
 analytics · auto-submit expansion · Postgres
+
+---
+
+## Post-v1 Backlog
+
+Deferred deliberately — none of it blocks v1, and doing it now would delay the
+parts that make the bot actually useful.
+
+### Expand job board coverage (highest value)
+
+Phase 3 revealed the real ceiling: **the filter works, the input is thin.**
+Probing ~155 slugs found almost nothing — Indian product companies (Razorpay,
+PhonePe, Swiggy, Zomato, Flipkart, Groww) run their own careers portals or use
+Darwinbox/Keka/Zoho Recruit, none of which expose a public JSON API.
+
+Options in order of value-per-effort:
+
+1. **More global boards that hire India-remote.** GitLab already proves this
+   works — the best-scoring jobs so far are GitLab India roles. Just slugs in
+   `config.json`, no code. Candidates worth probing: Automattic, Zapier,
+   DuckDuckGo, Toggl, Doist, Grafana, Hashicorp, Elastic, Canonical, Mozilla,
+   Sourcegraph, Supabase, PostHog, Railway, Fly.io, Cloudflare, Twilio,
+   MongoDB, Confluent, Datadog, DigitalOcean, Vercel, Netlify.
+2. **Tier 2 discovery-only for the Indian market.** Naukri/Instahyre/Cutshort/
+   Hirist find the jobs, the dashboard tracks them, you apply by hand. No login,
+   no submission, no ban risk — consistent with the PRD's Tier 2 rule. This is
+   where Indian companies actually post.
+3. **Per-company Darwinbox/Keka collectors.** Real work, bespoke per tenant,
+   closer to scraping than the clean APIs used so far. Only if 1 and 2 are
+   exhausted.
+
+**Do not respond to thin results by loosening the filter.** The filter is
+correct; verified against known-answer cases in Phase 3.
+
+### Other deferred items
+
+- Docker packaging
+- Response-rate analytics once there is enough data to be meaningful
+- Auto-submit expansion as trust in the system grows
+- Gmail integration to auto-detect rejections/interviews (Phase 8 does manual
+  status updates; this would automate them)
+- `mailto:` follow-up drafts where a real contact email is known
 
 ---
 
