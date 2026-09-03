@@ -5,7 +5,6 @@ const logger = require('./logger');
 const db = require('./db');
 
 const NOT_YET_BUILT = {
-  evaluate: 'Phase 3',
   apply: 'Phase 6',
 };
 
@@ -54,6 +53,14 @@ async function main() {
         break;
       }
 
+      case 'evaluate': {
+        db.migrate();
+        const { evaluate } = require('./evaluate');
+        // --dry-run shows what would be scored without spending any quota.
+        await evaluate({ dryRun: process.argv.includes('--dry-run') });
+        break;
+      }
+
       case 'dashboard': {
         db.migrate();
         require('./dashboard/server').start();
@@ -67,7 +74,7 @@ async function main() {
           break;
         }
         logger.error(`Unknown command: ${command}`);
-        logger.info(`Available: migrate, status, discover, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
+        logger.info(`Available: migrate, status, discover, evaluate, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
         process.exitCode = 1;
     }
   } catch (err) {

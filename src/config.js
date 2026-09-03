@@ -63,8 +63,8 @@ const config = {
     })(),
     geminiApiKey: process.env.GEMINI_API_KEY || '',
     openaiApiKey: process.env.OPENAI_API_KEY || '',
-    cheapModel: process.env.AI_MODEL_CHEAP || 'gemini-2.0-flash',
-    smartModel: process.env.AI_MODEL_SMART || 'gemini-2.5-pro',
+    cheapModel: process.env.AI_MODEL_CHEAP || 'gemini-3.1-flash-lite',
+    smartModel: process.env.AI_MODEL_SMART || 'gemini-3.6-flash',
     monthlyBudgetUsd: floatFromEnv(process.env.AI_MONTHLY_BUDGET_USD, 20),
     // Free-tier Gemini allows ~15 req/min, so calls are paced.
     requestDelayMs: intFromEnv(process.env.AI_REQUEST_DELAY_MS, 4500),
