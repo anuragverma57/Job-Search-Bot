@@ -237,7 +237,18 @@
     "eeoGender": "Prefer not to say",
     "eeoRace": "Prefer not to say",
     "eeoVeteran": "Prefer not to say",
-    "eeoDisability": "Prefer not to say"
+    "eeoDisability": "Prefer not to say",
+    "preferredName": "Anurag",
+    "countryOfResidence": "India",
+    "locatedUsCanada": "No",
+    "employmentAgreements": "No",
+    "previouslyEmployed": "No",
+    "relativeAtCompany": "No",
+    "backgroundCheckConsent": "Yes",
+    "primaryLanguage": "Java, Go",
+    "accommodations": "",
+    "openSourceLinks": "",
+    "_blankComment": "Deliberately blank: these need a per-application answer or none. A blank value routes to needs_manual rather than being guessed."
   },
   "followUp": {
     "daysUntilFollowUp": 7,

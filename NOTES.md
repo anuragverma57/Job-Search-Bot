@@ -191,6 +191,69 @@ Senior/Principal/Manager/Architect, or stale. The one real candidate
 
 ---
 
-## Phase 6
+## Phase 6 — Greenhouse
 
-*(per-platform form quirks — expect this section to get long)*
+### Form structure is consistent across boards
+
+Verified on Groww, GitLab, Cloudflare, Twilio, Postman. Core fields have
+stable ids: `#first_name`, `#last_name`, `#email`, `#phone`, `#country`,
+`#candidate-location`, `#resume`, `#cover_letter`. Custom questions are
+`#question_<numeric id>` where the id is per-posting, so they must be matched
+by their visible label, never by id.
+
+Most fields are `role="combobox"` react-select widgets, not `<select>`.
+Typing a value without selecting an option leaves the form state empty, so the
+value would be silently lost on submit.
+
+### Four bugs, each found by inspecting output rather than trusting the code
+
+**1. Unscoped option selector.** The phone-country widget keeps ~244
+`[role=option]` nodes in the DOM at all times. A bare `[role="option"]`
+selector read that list instead of the question's own 7 options, so every
+dropdown question failed. Fixed by scoping to the combobox's `aria-controls`
+listbox.
+
+**2. "India" selected "British Indian Ocean Territory".** A loose substring
+match ran before a word-boundary match. This is exactly the class of bug that
+silently puts wrong data on a real application. Word-boundary matching now
+runs first, and loose substring only when the option is not much longer than
+the answer.
+
+**3. File upload verified on the wrong signal.** Greenhouse replaces the input
+element after upload, so `getElementById('resume').files` reads `undefined`
+even on success — the upload was working the whole time. The reliable signal
+is the filename appearing in the page text. Worth remembering for Phase 7:
+verifying on the wrong signal produces false failures now and false successes
+later.
+
+**4. Location autocomplete needs the city alone.** "Patiala, India" returns 0
+options; "Patiala" returns 9. Also, `aria-controls` does not exist until the
+listbox opens, so reading it once up front returned null. Now retried with the
+first comma-segment, preferring an option containing "India" (the raw list
+includes "Basti Patiala, Punjab, Pakistan").
+
+### reCAPTCHA is present on every Greenhouse board
+
+Invisible v3 — it scores behaviour rather than showing a puzzle, so there is
+nothing to click. Nothing is solved or bypassed; `detectCaptcha` only reports
+presence, and an interactive challenge routes to needs_manual. This is a real
+risk for Phase 7: automated submissions may be scored poorly and silently
+rejected, which is one more reason submission must be verified positively.
+
+### Stripe is not on Greenhouse
+
+Stripe job URLs resolve to stripe.com with their own form, despite the board
+being reachable via the Greenhouse API. The filler correctly throws
+"required field not found" rather than filling something wrong. Worth a
+platform check before opening a browser.
+
+### Results across boards (dry run)
+
+    Cloudflare  10 filled, 2 unanswered
+    GitLab      12 filled, 1 unanswered
+    Groww       12 filled, 1 unanswered
+    Postman      6 filled, 0 unanswered
+
+Remaining unanswered are genuinely open questions — "any adjustments we can
+make", "open source projects you own", "what makes you ideal for this role" —
+which should need a human. The answer bank deliberately leaves these blank.

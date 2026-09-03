@@ -4,9 +4,7 @@ const config = require('./config');
 const logger = require('./logger');
 const db = require('./db');
 
-const NOT_YET_BUILT = {
-  apply: 'Phase 6',
-};
+const NOT_YET_BUILT = {};
 
 function showStatus() {
   const queries = require('./db/queries');
@@ -76,6 +74,22 @@ async function main() {
         break;
       }
 
+      case 'apply': {
+        db.migrate();
+        const { applyToJob } = require('./application/apply');
+        const jobArg = process.argv.indexOf('--job');
+        if (jobArg === -1) {
+          logger.error('Usage: npm run apply -- --job <id> [--headed]');
+          process.exitCode = 1;
+          break;
+        }
+        await applyToJob(parseInt(process.argv[jobArg + 1], 10), {
+          headless: !process.argv.includes('--headed'),
+          keepOpen: process.argv.includes('--keep-open'),
+        });
+        break;
+      }
+
       case 'resume': {
         db.migrate();
         const { generate } = require('./resume/render');
@@ -119,7 +133,7 @@ async function main() {
           break;
         }
         logger.error(`Unknown command: ${command}`);
-        logger.info(`Available: migrate, status, discover, evaluate, run, resume, notify:test, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
+        logger.info('Available: migrate, status, discover, evaluate, run, resume, apply, notify:test, dashboard');
         process.exitCode = 1;
     }
   } catch (err) {
