@@ -13,10 +13,12 @@
     "apply": "node src/index.js apply",
     "dashboard": "node src/index.js dashboard",
     "status": "node src/index.js status",
-    "test": "node test/normalize.test.js && node test/filter.test.js",
+    "test": "node test/normalize.test.js && node test/filter.test.js && node test/tailor.test.js",
     "test:filter": "node test/filter.test.js",
     "run:all": "node src/index.js run",
-    "notify:test": "node src/index.js notify:test"
+    "notify:test": "node src/index.js notify:test",
+    "resume": "node src/index.js resume",
+    "test:tailor": "node test/tailor.test.js"
   },
   "dependencies": {
     "better-sqlite3": "^12.4.1",

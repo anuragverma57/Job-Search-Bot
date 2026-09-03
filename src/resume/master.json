@@ -148,7 +148,9 @@
           ],
           "priority": 3
         }
-      ]
+      ],
+      "minBullets": 4,
+      "trimmable": false
     },
     {
       "company": "Flix Logix India",
@@ -204,7 +206,9 @@
         }
       ],
       "productLink": "https://play.google.com/store/apps/details?id=com.triply.app",
-      "productLinkLabel": "App Link"
+      "productLinkLabel": "App Link",
+      "minBullets": 2,
+      "trimmable": true
     },
     {
       "company": "Zalco Technologies",
@@ -248,7 +252,9 @@
           ],
           "priority": 3
         }
-      ]
+      ],
+      "minBullets": 2,
+      "trimmable": true
     }
   ],
   "projects": [
@@ -297,7 +303,9 @@
           ],
           "priority": 2
         }
-      ]
+      ],
+      "minBullets": 2,
+      "trimmable": true
     }
   ],
   "achievements": [
@@ -315,5 +323,6 @@
       "priority": 2,
       "linkLabel": "Score Card"
     }
-  ]
+  ],
+  "_trimPolicy": "Tailoring may DROP bullets from roles marked trimmable:true, down to minBullets, lowest priority first. It may never drop bullets from the current full-time role, and may never ADD anything. Projects keep at least 2 bullets."
 }

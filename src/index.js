@@ -76,6 +76,36 @@ async function main() {
         break;
       }
 
+      case 'resume': {
+        db.migrate();
+        const { generate } = require('./resume/render');
+        const { tailorFor } = require('./resume/tailor');
+        const queries = require('./db/queries');
+
+        const jobArg = process.argv.indexOf('--job');
+        if (jobArg === -1) {
+          // No job: render the master resume verbatim, the baseline.
+          await generate();
+          break;
+        }
+
+        const job = queries.getJob(parseInt(process.argv[jobArg + 1], 10));
+        if (!job) {
+          logger.error('No such job id');
+          process.exitCode = 1;
+          break;
+        }
+
+        const result = await tailorFor(job);
+        if (!result.tailored) {
+          logger.warn('Using master resume unchanged', { reason: result.reason });
+        } else {
+          logger.info('Tailored', { rationale: result.rationale });
+        }
+        await generate({ resume: result.resume, company: job.company, role: job.title });
+        break;
+      }
+
       case 'dashboard': {
         db.migrate();
         require('./dashboard/server').start();
@@ -89,7 +119,7 @@ async function main() {
           break;
         }
         logger.error(`Unknown command: ${command}`);
-        logger.info(`Available: migrate, status, discover, evaluate, run, notify:test, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
+        logger.info(`Available: migrate, status, discover, evaluate, run, resume, notify:test, dashboard, ${Object.keys(NOT_YET_BUILT).join(', ')}`);
         process.exitCode = 1;
     }
   } catch (err) {

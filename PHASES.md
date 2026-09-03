@@ -2,13 +2,13 @@
 
 ## Current Status
 
-**Phase:** 5 — Resume Pipeline
+**Phase:** 6 — Form Filling (DRY RUN ONLY)
 **State:** Not started
 
-**Blocked on:** master resume as structured JSON; real LinkedIn/GitHub/portfolio URLs in `config.json`
-**Next session:** master resume JSON, then HTML template to PDF, then tailoring under the no-fabrication rule
+**Blocked on:** nothing
+**Next session:** Greenhouse form filling first, dry-run only, screenshot every attempt
 
-**Done:** Phase 0 (`8ffbbbe`), Phase 1 (`6a4f788`), Phase 2 (`cc11ffd`), Phase 3 (`664bfbb`), Phase 4 — Telegram live via @Zalco_bot
+**Done:** Phases 0-4, Phase 5 — resume renders to 1-page PDF matching the LaTeX; tailoring passes a truthfulness gate (90 tests green)
 
 **Before Phase 6:** fill `profile` and `answerBank` in `config.json`
 
@@ -151,14 +151,22 @@ SQL injection attempts safely handled, loopback-only binding confirmed.*
 
 **Goal:** a correct PDF exists for any job.
 
-- [ ] Master resume as structured JSON — the single source of truth
-- [ ] Fixed HTML template → PDF (Playwright's `page.pdf()` is right here)
-- [ ] Tailoring: reorder/reword existing bullets only
-- [ ] **Hard rule enforced in the prompt and verified in code:** no skill, employer, date, metric, or claim may appear in output that isn't in the master JSON
-- [ ] Version each generated resume; store the path against the application
-- [ ] CLI: `npm run resume -- --job <id>`
+- [x] Master resume as structured JSON — the single source of truth
+- [x] Fixed HTML template → PDF (Playwright `page.pdf()`), reproducing the LaTeX layout
+- [x] Tailoring: reorder and subset only. The model returns bullet IDs and a
+      summary variant KEY, never prose — invented text has no channel to the PDF.
+- [x] **Hard rule enforced in code, not just the prompt:** `verify()` rejects any
+      bullet text, skill, employer, title, date or summary not present verbatim
+      in master.json. Failure falls back to the master resume, which is true by
+      construction.
+- [x] Trim policy: internship bullets are droppable to a floor; the current
+      full-time role is protected
+- [x] CLI: `npm run resume -- --job <id>` (no `--job` renders the master)
+- [x] `npm run test:tailor` — 20 assertions, mostly adversarial
 
 **Done when:** you generate three tailored resumes, read them, and every line is true.
+*Rendering and the gate are verified. **The read-them-yourself check is still
+yours to do** — see the note below.*
 
 **Watch out:** verify truthfulness by hand at this stage. It's the one failure that damages you professionally, and it's invisible unless you look.
 
