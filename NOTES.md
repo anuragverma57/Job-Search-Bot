@@ -98,6 +98,38 @@ here whenever a new collapse/no-collapse rule is discovered.
 
 ---
 
+## Phase 2
+
+### Default sort must be posting date, not discovery date
+
+A whole discovery run shares one `discovered_at` value — 1113 rows across only
+3 distinct timestamps on the first run. Ordering by it leaves each batch in
+arbitrary order, so the landing page filled with Linear postings 4-5 years old
+while GitLab's India backend roles posted *today* sat on page 12. Default sort
+is now `posted DESC`. Worth remembering: any "newest" ordering keyed on when
+*we* saw something will be wrong for batch inserts.
+
+### Stale postings are real
+
+Ashby boards in particular carry postings years old (Linear has several from
+2021). The `maxAgeDays` filter matters more than expected — the useful default
+view is really "backend + India + last 30 days", which returns 12 jobs out of
+1113.
+
+### Server binds to 127.0.0.1 explicitly
+
+`app.listen(port)` alone binds 0.0.0.0 and exposes an unauthenticated page to
+the whole local network. Passing `'127.0.0.1'` as the host is what keeps it
+local; verified with `lsof` and by trying the LAN IP.
+
+### Killing a backgrounded server between Bash calls
+
+`kill %1` does not work — each Bash tool call is a fresh shell with no job
+table. Use `pkill -f "node src/index.js dashboard"`. Two "fixes" appeared to
+fail because the old process was still serving cached code.
+
+---
+
 ## Phase 6
 
 *(per-platform form quirks — expect this section to get long)*

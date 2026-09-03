@@ -251,6 +251,117 @@ function getSummary(followUpDays) {
   };
 }
 
+
+// ---- Job browsing (dashboard) ----------------------------------------------
+
+/**
+ * Filtered, paginated job list for the dashboard. Filters are applied in SQL
+ * rather than in JS so the page stays fast as the table grows.
+ */
+function searchJobs(options = {}) {
+  const {
+    q = '',
+    platform = '',
+    status = '',
+    location = '',
+    maxAgeDays = null,
+    sort = 'discovered',
+    limit = 50,
+    offset = 0,
+  } = options;
+
+  const where = [];
+  const params = {};
+
+  if (q) {
+    where.push('(j.title LIKE @q OR j.company LIKE @q OR j.description LIKE @q)');
+    params.q = `%${q}%`;
+  }
+  if (platform) {
+    where.push('j.platform = @platform');
+    params.platform = platform;
+  }
+  if (status) {
+    where.push('j.status = @status');
+    params.status = status;
+  }
+  if (location) {
+    where.push('j.location LIKE @location');
+    params.location = `%${location}%`;
+  }
+  if (maxAgeDays) {
+    where.push("j.posted_at >= date('now', '-' || @maxAgeDays || ' days')");
+    params.maxAgeDays = maxAgeDays;
+  }
+
+  const whereSql = where.length ? `WHERE ${where.join(' AND ')}` : '';
+
+  const ORDERINGS = {
+    // A whole discovery run shares one timestamp (1113 rows across 3 distinct
+    // values on the first run), so ordering by it alone leaves the batch in
+    // arbitrary order and fills the page with years-old postings. Posting date
+    // is the real tiebreak.
+    discovered: 'j.discovered_at DESC, j.posted_at DESC',
+    posted: 'j.posted_at DESC',
+    company: 'j.company ASC, j.title ASC',
+    score: 'score DESC NULLS LAST, j.discovered_at DESC',
+  };
+  const orderSql = ORDERINGS[sort] || ORDERINGS.discovered;
+
+  const total = db.raw
+    .prepare(`SELECT COUNT(*) AS count FROM jobs j ${whereSql}`)
+    .get(params).count;
+
+  const rows = db.raw
+    .prepare(`
+      SELECT j.*,
+             (SELECT score  FROM ai_evaluations e WHERE e.job_id = j.id ORDER BY e.created_at DESC LIMIT 1) AS score,
+             (SELECT reason FROM ai_evaluations e WHERE e.job_id = j.id ORDER BY e.created_at DESC LIMIT 1) AS reason,
+             (SELECT a.status FROM applications a WHERE a.job_id = j.id ORDER BY a.id DESC LIMIT 1) AS application_status
+      FROM jobs j
+      ${whereSql}
+      ORDER BY ${orderSql}
+      LIMIT @limit OFFSET @offset
+    `)
+    .all({ ...params, limit, offset });
+
+  return { rows, total };
+}
+
+/** Distinct values for the filter dropdowns. */
+function getFilterOptions() {
+  const platforms = db.raw
+    .prepare('SELECT platform, COUNT(*) AS count FROM jobs GROUP BY platform ORDER BY count DESC')
+    .all();
+  const statuses = db.raw
+    .prepare('SELECT status, COUNT(*) AS count FROM jobs GROUP BY status ORDER BY count DESC')
+    .all();
+  return { platforms, statuses };
+}
+
+function getLastRun() {
+  return db.raw
+    .prepare("SELECT * FROM runs WHERE command = 'discover' AND finished_at IS NOT NULL ORDER BY id DESC LIMIT 1")
+    .get();
+}
+
+function getPlatformHealth() {
+  return db.raw.prepare('SELECT * FROM platform_health ORDER BY platform').all();
+}
+
+function getNeedsAttention() {
+  return db.raw
+    .prepare(`
+      SELECT a.*, j.company, j.title, j.url, j.platform
+      FROM applications a
+      JOIN jobs j ON j.id = a.job_id
+      WHERE a.status IN ('needs_manual', 'failed')
+      ORDER BY a.last_status_change DESC
+      LIMIT 25
+    `)
+    .all();
+}
+
 module.exports = {
   insertJob,
   jobExists,
@@ -271,4 +382,9 @@ module.exports = {
   recordPlatformSuccess,
   recordPlatformFailure,
   getSummary,
+  searchJobs,
+  getFilterOptions,
+  getLastRun,
+  getPlatformHealth,
+  getNeedsAttention,
 };

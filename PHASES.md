@@ -2,13 +2,13 @@
 
 ## Current Status
 
-**Phase:** 2 — Dashboard (read-only)
+**Phase:** 3 — Filter + AI Evaluation
 **State:** Not started
 
-**Blocked on:** nothing
-**Next session:** Express server + single server-rendered page over the 1113 jobs already in the DB
+**Blocked on:** `OPENAI_API_KEY` in `.env`
+**Next session:** deterministic pre-filter first (free, no API calls), then AI scoring on survivors
 
-**Done:** Phase 0 (`8ffbbbe`), Phase 1 — 1113 jobs discovered, 0 on re-run, 33 dedup tests passing
+**Done:** Phase 0 (`8ffbbbe`), Phase 1 (`6a4f788`), Phase 2 — dashboard live at localhost:3000 over 1113 jobs
 
 **Before Phase 6:** fill `profile` and `answerBank` in `config.json`
 
@@ -96,13 +96,18 @@ tracking. See `src/db/schema.sql`.*
 
 **Goal:** something useful exists, even though nothing is automated yet.
 
-- [ ] Express server on `localhost:3000`
-- [ ] One route, server-rendered HTML, plain CSS, no build step, no framework
-- [ ] Summary strip: applied this week / awaiting / follow-ups due / responses
-- [ ] Recent jobs table: date, company, title, platform, status, link
-- [ ] `npm run dashboard`
+- [x] Express server on `localhost:3000` (bound to 127.0.0.1, never 0.0.0.0)
+- [x] One route, server-rendered HTML, plain CSS, no build step, no framework
+- [x] Summary strip: jobs found / applied this week / awaiting / follow-ups due / pending approval / needs attention
+- [x] Jobs table: role, company, location, platform, posted age, score, status
+- [x] Filters: text search, platform, status, location, posting age, sort
+- [x] Pagination (50/page)
+- [x] Platform health chips + last-run line
+- [x] `npm run dashboard`
 
-**Done when:** you can open the page and see the jobs Phase 1 found.
+**Done when:** you can open the page and see the jobs Phase 1 found. ✅
+*Verified: 1113 jobs browsable, filters/pagination/sort all working, XSS and
+SQL injection attempts safely handled, loopback-only binding confirmed.*
 
 **Why this early:** it makes every later phase debuggable by eye, and it's genuinely useful on its own — you can already browse discovered jobs instead of trawling boards.
 
