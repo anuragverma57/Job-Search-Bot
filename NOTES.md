@@ -161,6 +161,36 @@ input is thin.
 
 ---
 
+## Phase 5 — global board expansion (backlog option 1)
+
+Probed ~80 remote-friendly global companies. **11 live boards found**, which
+doubled coverage from 11 to 22 boards and the job pool from 1147 to 2445.
+
+- Greenhouse: canonical, cloudflare, elastic, grafanalabs, mozilla, twilio
+- Ashby: posthog, railway, supabase, toggl, zapier
+
+This confirms backlog option 1 was the right first move: Indian product
+companies are unreachable via these APIs, but global companies hiring
+India-remote are not.
+
+### maxPostingAgeDays raised 30 -> 60
+
+At 30 days only 10 jobs passed; 29 would have passed if every posting were
+fresh, so age was the single biggest blocker after title exclusions. Raising
+to 60 surfaced 5 genuinely new candidates including the two best non-GitLab
+scores to date (Supabase Supalite Engineer 6.4, GitLab Intermediate Fullstack
+6.3). ATS postings stay open far longer than 30 days; 30 was too aggressive.
+
+### The filter is not the problem — verified again
+
+Twilio showed 21 "junior engineering" roles in a loose preview but only one
+survived the real filter. Checked each rejection by hand: all were genuinely
+Senior/Principal/Manager/Architect, or stale. The one real candidate
+("Applications Engineer 2") was 65 days old and is now reachable at the
+60-day cap.
+
+---
+
 ## Phase 6
 
 *(per-platform form quirks — expect this section to get long)*

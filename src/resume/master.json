@@ -1,0 +1,207 @@
+{
+  "_comment": "MASTER RESUME — single source of truth. Tailoring may ONLY reorder, reword, or omit what is here. Nothing may be added. Every claim below must be defensible in an interview.",
+
+  "_placeholders": "Fields marked TODO need real values. The PDF renders links as anchor text, so URLs were not recoverable from it.",
+
+  "personal": {
+    "name": "Anurag Verma",
+    "phone": "+91 9044499810",
+    "email": "anurag.av57@gmail.com",
+    "location": "Lucknow, India",
+    "currentLocation": "Patiala, India",
+    "links": {
+      "linkedin": "TODO",
+      "github": "TODO",
+      "portfolio": "TODO",
+      "leetcode": "TODO"
+    }
+  },
+
+  "summary": {
+    "default": "Backend-focused Software Engineer with experience building scalable APIs and distributed systems using Java, Go and Node.js. Hands-on experience developing production backend services, performance optimizations, and full-stack features.",
+    "_variantsComment": "Tailoring may pick a variant or reword the default, but may not introduce a technology absent from the skills block below.",
+    "variants": {
+      "java": "Backend Software Engineer with production experience building scalable REST APIs and distributed systems in Java and Spring Boot. Focused on performance optimization, caching, and database efficiency.",
+      "go": "Backend Software Engineer with production experience building REST and gRPC services in Go, alongside Java and Node.js. Focused on API design, caching, and performance optimization.",
+      "generalist": "Backend-focused Software Engineer with experience building scalable APIs and distributed systems using Java, Go and Node.js. Hands-on experience developing production backend services, performance optimizations, and full-stack features."
+    }
+  },
+
+  "skills": {
+    "_rule": "This is the complete, allowed technology vocabulary. Tailoring may reorder or subset it. Any technology NOT listed here may never appear in a generated resume.",
+    "languages": ["Java", "Go", "JavaScript", "TypeScript", "SQL", "Python"],
+    "frameworks": ["Spring Boot", "Node.js", "Echo", "Express.js", "gRPC", "REST", "FastAPI", "Socket.io"],
+    "databases": ["PostgreSQL", "MongoDB", "Redis", "Valkey", "CouchDB", "ArangoDB"],
+    "cloudDevops": ["Docker", "AWS", "EC2", "S3", "CI/CD"],
+    "tools": ["Postman", "VS Code", "Git", "Excel", "Canva"],
+    "practices": ["Agile", "CI/CD", "Unit Testing", "TDD", "Microservices", "RBAC", "WebSockets"]
+  },
+
+  "education": [
+    {
+      "institution": "National Institute of Technology, Srinagar",
+      "degree": "Bachelor of Technology",
+      "field": "",
+      "_fieldComment": "TODO: branch/major is not stated on the PDF. Fill in if forms ask.",
+      "startYear": 2021,
+      "endYear": 2025,
+      "score": "CGPA: 7.67"
+    },
+    {
+      "institution": "St. Don Bosco College, Lakhimpur-Kheri",
+      "degree": "Intermediate (CBSE)",
+      "startYear": 2019,
+      "endYear": 2020,
+      "score": "83.2%"
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "RBH Solutions Pvt. Ltd.",
+      "title": "Software Developer",
+      "location": "Patiala",
+      "workMode": "On-site",
+      "startDate": "2025-10",
+      "endDate": null,
+      "current": true,
+      "bullets": [
+        {
+          "id": "rbh-websocket",
+          "text": "Resolved a production WebSocket streaming failure by implementing a chunked streaming pipeline for 35 MB payloads, restoring successful login flows across deployments and supporting rollout from 35 to 250+ substations. Supported production deployments across HVPNL and MSETCL through incident triage, backend debugging, and SLA-driven hotfixes.",
+          "tags": ["WebSockets", "streaming", "production", "incident response", "Java"],
+          "priority": 2
+        },
+        {
+          "id": "rbh-dashboard-perf",
+          "text": "Reduced dashboard load time from 8–10 s to under 1 s by moving search, filtering, and pagination to backend APIs backed by PostgreSQL, and introducing a Valkey caching layer with ~70% cache hit rate.",
+          "tags": ["PostgreSQL", "Redis", "Valkey", "caching", "performance", "REST"],
+          "priority": 1
+        },
+        {
+          "id": "rbh-couchdb-batch",
+          "text": "Reduced CouchDB batch processing time from 15–17 minutes to under 20 seconds by replacing N+1 updates with batch operations for 10,000+ records. Built a secure SCADA–MDU asset replacement workflow with RBAC, audit logging, and validation.",
+          "tags": ["CouchDB", "performance", "RBAC", "security"],
+          "priority": 2
+        },
+        {
+          "id": "rbh-maintenance-module",
+          "text": "Led development of the Maintenance Automation Module, translating field requirements into backend workflows and delivering 10 dashboard modules from requirements through production while working directly with government engineers during requirement workshops and deployments.",
+          "tags": ["ownership", "stakeholders", "full stack"],
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "company": "Flix Logix India",
+      "title": "Software Developer Intern",
+      "location": "Remote",
+      "workMode": "Remote",
+      "startDate": "2024-01",
+      "endDate": "2024-07",
+      "current": false,
+      "isInternship": true,
+      "bullets": [
+        {
+          "id": "flix-rest-apis",
+          "text": "Built and managed 30+ REST APIs using Go (Echo), Redis, and ArangoDB for a multi-role cab platform.",
+          "tags": ["Go", "Echo", "Redis", "ArangoDB", "REST"],
+          "priority": 1
+        },
+        {
+          "id": "flix-otp-auth",
+          "text": "Implemented OTP-based authentication, reducing fake rides by 15% and improving user safety by 20%.",
+          "tags": ["authentication", "security", "Go"],
+          "priority": 2
+        },
+        {
+          "id": "flix-tracking",
+          "text": "Implemented backend support for live tracking, geo-fencing, and route optimization, contributing to approximately 10% lower ride wait times.",
+          "tags": ["Go", "geospatial", "real-time"],
+          "priority": 2
+        },
+        {
+          "id": "flix-collaboration",
+          "text": "Collaborated in a 5-member agile team, handled 20+ pull requests, and authored internal API documentation for developer onboarding.",
+          "tags": ["Agile", "collaboration", "documentation"],
+          "priority": 3
+        }
+      ]
+    },
+    {
+      "company": "Zalco Technologies",
+      "title": "Backend Developer Intern",
+      "location": "Remote",
+      "workMode": "Remote",
+      "startDate": "2023-05",
+      "endDate": "2023-12",
+      "current": false,
+      "isInternship": true,
+      "bullets": [
+        {
+          "id": "zalco-messaging",
+          "text": "Built a real-time messaging backend supporting 100+ concurrent users using Express.js, TypeScript, and Socket.io.",
+          "tags": ["Node.js", "Express.js", "TypeScript", "Socket.io", "WebSockets", "real-time"],
+          "priority": 1
+        },
+        {
+          "id": "zalco-mongo-perf",
+          "text": "Improved MongoDB query performance by 32% through schema refactoring and compound indexing.",
+          "tags": ["MongoDB", "performance", "databases"],
+          "priority": 1
+        },
+        {
+          "id": "zalco-features",
+          "text": "Implemented features including file attachments, location sharing, chat deletion, message forwarding, and broadcast messaging.",
+          "tags": ["Node.js", "features"],
+          "priority": 3
+        }
+      ]
+    }
+  ],
+
+  "projects": [
+    {
+      "id": "job-outreach-platform",
+      "name": "AI Job Outreach Automation Platform",
+      "link": "TODO",
+      "_linkComment": "TODO: GitHub repo URL — rendered as 'Github Repo' anchor text on the PDF.",
+      "stack": ["Go", "Python", "FastAPI", "PostgreSQL", "Redis", "Docker"],
+      "bullets": [
+        {
+          "id": "proj-overview",
+          "text": "Built a microservices-based platform to automate job applications with AI-generated cold emails, resume matching, scheduling workflows, and end-to-end application tracking.",
+          "tags": ["microservices", "architecture"],
+          "priority": 1
+        },
+        {
+          "id": "proj-services",
+          "text": "Designed and implemented backend microservices for API, scheduler, worker, and AI processing using Go, FastAPI, Redis queues, and PostgreSQL, implementing asynchronous job execution, retry mechanisms, and service-to-service communication.",
+          "tags": ["Go", "FastAPI", "Redis", "PostgreSQL", "microservices", "async"],
+          "priority": 1
+        },
+        {
+          "id": "proj-ai-pipeline",
+          "text": "Developed an AI-driven pipeline to parse unstructured job data, extract key fields, select the most relevant resume, and generate personalized outreach emails, significantly reducing manual effort.",
+          "tags": ["AI", "Python", "data processing"],
+          "priority": 2
+        }
+      ]
+    }
+  ],
+
+  "achievements": [
+    {
+      "id": "leetcode",
+      "text": "Solved 200+ Data Structures and Algorithms problems on LeetCode.",
+      "link": "TODO",
+      "priority": 1
+    },
+    {
+      "id": "tcs-nqt",
+      "text": "Cleared TCS National Qualifier Test with a score of 80.9%, and also qualified TCS Free NQT (PRIME).",
+      "link": "TODO",
+      "priority": 2
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 {
-  "_comment": "Search preferences and answer bank, derived from the master resume. Safe to commit — no secrets here. This is your main tuning surface.",
-
+  "_comment": "Search preferences and answer bank, derived from the master resume. Safe to commit \u2014 no secrets here. This is your main tuning surface.",
   "profile": {
     "name": "Anurag Verma",
     "email": "anurag.av57@gmail.com",
@@ -22,7 +21,6 @@
       "cgpa": 7.67
     }
   },
-
   "search": {
     "keywords": [
       "backend engineer",
@@ -44,8 +42,7 @@
       "junior backend engineer",
       "full stack engineer"
     ],
-
-    "_skillsComment": "requiredSkills is scored as 'at least N present', not all — see filter.minRequiredSkillMatches. Every entry below is genuinely on the resume.",
+    "_skillsComment": "requiredSkills is scored as 'at least N present', not all \u2014 see filter.minRequiredSkillMatches. Every entry below is genuinely on the resume.",
     "requiredSkills": [
       "Java",
       "Go",
@@ -58,7 +55,6 @@
       "PostgreSQL",
       "SQL"
     ],
-
     "niceToHaveSkills": [
       "Redis",
       "MongoDB",
@@ -83,7 +79,6 @@
       "FastAPI",
       "Python"
     ],
-
     "_excludeComment": "Matched against the job TITLE only, so a description merely mentioning React does not disqualify a backend role.",
     "excludeKeywords": [
       "intern",
@@ -147,10 +142,11 @@
       "technical writer",
       "product manager"
     ],
-
-    "experienceRange": { "min": 0, "max": 3 },
+    "experienceRange": {
+      "min": 0,
+      "max": 3
+    },
     "_rangeComment": "Postings asking up to 3 yrs are reachable when internships are credited. 4+ was letting through roles wanting a solid mid-level engineer. 0 keeps new-grad and SDE-1 roles in.",
-
     "locations": [
       "Remote",
       "India",
@@ -169,34 +165,63 @@
     "remoteOnly": false,
     "_locationComment": "Remote entries must still be India-eligible; 'Remote, United States' is rejected by the filter's region check."
   },
-
   "filter": {
     "minScoreToPrepare": 7,
     "maxJobsPerRunToEvaluate": 40,
-    "maxPostingAgeDays": 30,
+    "maxPostingAgeDays": 60,
     "minRequiredSkillMatches": 2,
-    "_matchComment": "How many requiredSkills must appear in the description. 2 is deliberately loose — postings rarely list a full stack, and the AI judges the rest."
+    "_matchComment": "How many requiredSkills must appear in the description. 2 is deliberately loose \u2014 postings rarely list a full stack, and the AI judges the rest."
   },
-
   "blocklist": {
     "_comment": "Companies the bot must NEVER auto-submit to. Surfaced for manual handling instead. Put your dream companies here.",
     "companies": []
   },
-
   "platforms": {
     "_comment": "tier1 = automated submission allowed. tier2 = discovery only, never log in. See PRD.",
-    "tier1": ["greenhouse", "lever", "ashby"],
-    "tier2": ["wellfound", "linkedin", "naukri"],
+    "tier1": [
+      "greenhouse",
+      "lever",
+      "ashby"
+    ],
+    "tier2": [
+      "wellfound",
+      "linkedin",
+      "naukri"
+    ],
     "boards": {
-      "_comment": "Company board slugs to poll. Verified live — see NOTES.md for dead ones.",
-      "greenhouse": ["groww", "postman", "gitlab", "stripe"],
-      "lever": ["cred", "zeta", "meesho", "spotify"],
-      "ashby": ["ramp", "vanta", "linear"]
+      "_comment": "Company board slugs to poll. All verified live. Global remote-friendly boards added \u2014 Indian product companies (Razorpay/PhonePe/Swiggy/Zomato) use Darwinbox/Keka/in-house portals with no public API; see NOTES.md.",
+      "greenhouse": [
+        "groww",
+        "postman",
+        "gitlab",
+        "stripe",
+        "canonical",
+        "cloudflare",
+        "elastic",
+        "grafanalabs",
+        "mozilla",
+        "twilio"
+      ],
+      "lever": [
+        "cred",
+        "zeta",
+        "meesho",
+        "spotify"
+      ],
+      "ashby": [
+        "ramp",
+        "vanta",
+        "linear",
+        "posthog",
+        "railway",
+        "supabase",
+        "toggl",
+        "zapier"
+      ]
     }
   },
-
   "answerBank": {
-    "_comment": "Standard application questions. Anything not matched here routes to needs_manual — the bot never guesses.",
+    "_comment": "Standard application questions. Anything not matched here routes to needs_manual \u2014 the bot never guesses.",
     "workAuthorization": "Authorized to work in India",
     "requiresSponsorship": "No",
     "noticePeriod": "30 days",
@@ -214,7 +239,6 @@
     "eeoVeteran": "Prefer not to say",
     "eeoDisability": "Prefer not to say"
   },
-
   "followUp": {
     "daysUntilFollowUp": 7,
     "daysUntilGhosted": 30
