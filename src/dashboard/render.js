@@ -101,7 +101,15 @@ a.title:hover { text-decoration: underline; color: var(--accent); }
   padding: 1px 7px; font-size: 11px; color: var(--muted); white-space: nowrap;
 }
 .chip.old { color: var(--warn); }
-.score { font-weight: 600; }
+.score { font-weight: 600; white-space: nowrap; }
+.score.good { color: var(--accent); }
+.score.mid { color: var(--warn); }
+.score.low { color: var(--muted); }
+.reason {
+  color: var(--muted); font-size: 12px; margin-top: 3px;
+  max-width: 62ch; line-height: 1.45;
+}
+.reason .risk { color: var(--warn); }
 .empty { padding: 30px 14px; text-align: center; color: var(--muted); font-size: 13px; }
 .pager { display: flex; gap: 8px; align-items: center; margin-top: 12px; font-size: 13px; color: var(--muted); }
 .pager a { border: 1px solid var(--border); border-radius: 5px; padding: 5px 11px; background: var(--panel); }
@@ -133,16 +141,30 @@ function jobRow(job) {
   const age = daysAgo(job.posted_at);
   const isStale = age !== null && age > 30;
 
-  const scoreCell = job.score !== null && job.score !== undefined
-    ? `<span class="score">${Number(job.score).toFixed(1)}</span>`
-    : '<span class="chip">—</span>';
+  let scoreCell = '<span class="chip">—</span>';
+  if (job.score !== null && job.score !== undefined) {
+    const score = Number(job.score);
+    const band = score >= 7 ? 'good' : score >= 5 ? 'mid' : 'low';
+    scoreCell = `<span class="score ${band}">${score.toFixed(1)}</span>`;
+  }
 
   const state = job.application_status || job.status;
+
+  // evaluate.js stores the reason as "summary [risk: …]"; the risk half is
+  // shown in a warning colour so a real concern is not buried in grey.
+  let reasonHtml = '';
+  if (job.reason) {
+    const match = String(job.reason).match(/^(.*?)\s*\[risk:\s*(.*?)\]\s*$/s);
+    reasonHtml = match
+      ? `<div class="reason">${escapeHtml(match[1].trim())} <span class="risk">Risk: ${escapeHtml(match[2].trim())}</span></div>`
+      : `<div class="reason">${escapeHtml(job.reason)}</div>`;
+  }
 
   return `<tr>
     <td>
       <a class="title" href="${escapeHtml(job.url)}" target="_blank" rel="noopener">${escapeHtml(job.title)}</a>
       <div class="company">${escapeHtml(job.company)}</div>
+      ${reasonHtml}
     </td>
     <td class="nowrap">${escapeHtml(job.location || '—')}</td>
     <td><span class="chip">${escapeHtml(job.platform)}</span></td>

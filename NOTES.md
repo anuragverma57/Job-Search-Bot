@@ -130,6 +130,37 @@ fail because the old process was still serving cached code.
 
 ---
 
+## Phase 3 — board coverage is the real ceiling
+
+Probed ~155 slugs (70 plain names + 85 variants like `razorpaysoftware`,
+`bundltechnologies`, `mohallatech`) across all three ATS platforms. **One hit**,
+and it was a name collision: `ashby/navi` is a San Francisco hardware startup,
+not Navi the Indian fintech.
+
+The method was verified against known-good slugs (groww, postman, gitlab,
+stripe, cred, zeta, meesho all still return 200), so this is a real finding.
+
+**Why:** Razorpay, PhonePe, Swiggy, Zomato, Flipkart and Groww all run careers
+pages on their own domains with no Greenhouse/Lever/Ashby markers in the HTML.
+Indian product companies overwhelmingly use Darwinbox, Keka, Zoho Recruit,
+SmartRecruiters, or in-house portals — none of which expose a public JSON API
+the way the Tier 1 three do.
+
+**Consequence:** Tier 1 coverage for India-based backend roles is structurally
+thin. The pipeline is working correctly; there is simply little to find. Options,
+in order of value:
+
+1. Add more *global* boards that hire India-remote (the current set is only 11).
+2. Accept that Tier 1 is a supplement, and use Tier 2 (Naukri/LinkedIn)
+   discovery-only for the Indian market, applying by hand.
+3. Write per-company collectors for Darwinbox/Keka tenants — real work, and
+   each one is bespoke.
+
+Do NOT respond to this by loosening the filter. The filter is correct; the
+input is thin.
+
+---
+
 ## Phase 6
 
 *(per-platform form quirks — expect this section to get long)*
