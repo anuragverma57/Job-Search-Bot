@@ -1,8 +1,6 @@
 {
-  "_comment": "MASTER RESUME — single source of truth. Tailoring may ONLY reorder, reword, or omit what is here. Nothing may be added. Every claim below must be defensible in an interview.",
-
-  "_placeholders": "Fields marked TODO need real values. The PDF renders links as anchor text, so URLs were not recoverable from it.",
-
+  "_comment": "MASTER RESUME \u2014 single source of truth. Tailoring may ONLY reorder, reword, or omit what is here. Nothing may be added. Every claim below must be defensible in an interview.",
+  "_placeholders": "All placeholders filled. URLs reconciled against main.tex, which is the authoritative source for links.",
   "personal": {
     "name": "Anurag Verma",
     "phone": "+91 9044499810",
@@ -10,13 +8,12 @@
     "location": "Lucknow, India",
     "currentLocation": "Patiala, India",
     "links": {
-      "linkedin": "TODO",
-      "github": "TODO",
-      "portfolio": "TODO",
-      "leetcode": "TODO"
+      "linkedin": "https://www.linkedin.com/in/anuragverma57",
+      "github": "https://github.com/anuragverma57",
+      "portfolio": "https://anuragverma57.github.io/",
+      "leetcode": "https://leetcode.com/u/anuragverma57/"
     }
   },
-
   "summary": {
     "default": "Backend-focused Software Engineer with experience building scalable APIs and distributed systems using Java, Go and Node.js. Hands-on experience developing production backend services, performance optimizations, and full-stack features.",
     "_variantsComment": "Tailoring may pick a variant or reword the default, but may not introduce a technology absent from the skills block below.",
@@ -26,23 +23,63 @@
       "generalist": "Backend-focused Software Engineer with experience building scalable APIs and distributed systems using Java, Go and Node.js. Hands-on experience developing production backend services, performance optimizations, and full-stack features."
     }
   },
-
   "skills": {
     "_rule": "This is the complete, allowed technology vocabulary. Tailoring may reorder or subset it. Any technology NOT listed here may never appear in a generated resume.",
-    "languages": ["Java", "Go", "JavaScript", "TypeScript", "SQL", "Python"],
-    "frameworks": ["Spring Boot", "Node.js", "Echo", "Express.js", "gRPC", "REST", "FastAPI", "Socket.io"],
-    "databases": ["PostgreSQL", "MongoDB", "Redis", "Valkey", "CouchDB", "ArangoDB"],
-    "cloudDevops": ["Docker", "AWS", "EC2", "S3", "CI/CD"],
-    "tools": ["Postman", "VS Code", "Git", "Excel", "Canva"],
-    "practices": ["Agile", "CI/CD", "Unit Testing", "TDD", "Microservices", "RBAC", "WebSockets"]
+    "languages": [
+      "Java",
+      "Go",
+      "JavaScript",
+      "TypeScript",
+      "SQL",
+      "Python"
+    ],
+    "frameworks": [
+      "Spring Boot",
+      "Node.js",
+      "Echo",
+      "Express.js",
+      "gRPC",
+      "REST",
+      "FastAPI",
+      "Socket.io"
+    ],
+    "databases": [
+      "PostgreSQL",
+      "MongoDB",
+      "Redis",
+      "Valkey",
+      "CouchDB",
+      "ArangoDB"
+    ],
+    "cloudDevops": [
+      "Docker",
+      "AWS",
+      "EC2",
+      "S3",
+      "CI/CD"
+    ],
+    "tools": [
+      "Postman",
+      "VS Code",
+      "Git",
+      "Excel",
+      "Canva"
+    ],
+    "practices": [
+      "Agile",
+      "CI/CD",
+      "Unit Testing",
+      "TDD",
+      "Microservices",
+      "RBAC",
+      "WebSockets"
+    ]
   },
-
   "education": [
     {
       "institution": "National Institute of Technology, Srinagar",
       "degree": "Bachelor of Technology",
-      "field": "",
-      "_fieldComment": "TODO: branch/major is not stated on the PDF. Fill in if forms ask.",
+      "field": "Mechanical Engineering",
       "startYear": 2021,
       "endYear": 2025,
       "score": "CGPA: 7.67"
@@ -55,7 +92,6 @@
       "score": "83.2%"
     }
   ],
-
   "experience": [
     {
       "company": "RBH Solutions Pvt. Ltd.",
@@ -69,25 +105,47 @@
         {
           "id": "rbh-websocket",
           "text": "Resolved a production WebSocket streaming failure by implementing a chunked streaming pipeline for 35 MB payloads, restoring successful login flows across deployments and supporting rollout from 35 to 250+ substations. Supported production deployments across HVPNL and MSETCL through incident triage, backend debugging, and SLA-driven hotfixes.",
-          "tags": ["WebSockets", "streaming", "production", "incident response", "Java"],
+          "tags": [
+            "WebSockets",
+            "streaming",
+            "production",
+            "incident response",
+            "Java"
+          ],
           "priority": 2
         },
         {
           "id": "rbh-dashboard-perf",
-          "text": "Reduced dashboard load time from 8–10 s to under 1 s by moving search, filtering, and pagination to backend APIs backed by PostgreSQL, and introducing a Valkey caching layer with ~70% cache hit rate.",
-          "tags": ["PostgreSQL", "Redis", "Valkey", "caching", "performance", "REST"],
+          "text": "Reduced dashboard load time from 8\u201310 s to under 1 s by moving search, filtering, and pagination to backend APIs backed by PostgreSQL, and introducing a Valkey caching layer with ~70% cache hit rate.",
+          "tags": [
+            "PostgreSQL",
+            "Redis",
+            "Valkey",
+            "caching",
+            "performance",
+            "REST"
+          ],
           "priority": 1
         },
         {
           "id": "rbh-couchdb-batch",
-          "text": "Reduced CouchDB batch processing time from 15–17 minutes to under 20 seconds by replacing N+1 updates with batch operations for 10,000+ records. Built a secure SCADA–MDU asset replacement workflow with RBAC, audit logging, and validation.",
-          "tags": ["CouchDB", "performance", "RBAC", "security"],
+          "text": "Reduced CouchDB batch processing time from 15\u201317 minutes to under 20 seconds by replacing N+1 updates with batch operations for 10,000+ records. Built a secure SCADA\u2013MDU asset replacement workflow with RBAC, audit logging, and validation.",
+          "tags": [
+            "CouchDB",
+            "performance",
+            "RBAC",
+            "security"
+          ],
           "priority": 2
         },
         {
           "id": "rbh-maintenance-module",
           "text": "Led development of the Maintenance Automation Module, translating field requirements into backend workflows and delivering 10 dashboard modules from requirements through production while working directly with government engineers during requirement workshops and deployments.",
-          "tags": ["ownership", "stakeholders", "full stack"],
+          "tags": [
+            "ownership",
+            "stakeholders",
+            "full stack"
+          ],
           "priority": 3
         }
       ]
@@ -105,28 +163,48 @@
         {
           "id": "flix-rest-apis",
           "text": "Built and managed 30+ REST APIs using Go (Echo), Redis, and ArangoDB for a multi-role cab platform.",
-          "tags": ["Go", "Echo", "Redis", "ArangoDB", "REST"],
+          "tags": [
+            "Go",
+            "Echo",
+            "Redis",
+            "ArangoDB",
+            "REST"
+          ],
           "priority": 1
         },
         {
           "id": "flix-otp-auth",
           "text": "Implemented OTP-based authentication, reducing fake rides by 15% and improving user safety by 20%.",
-          "tags": ["authentication", "security", "Go"],
+          "tags": [
+            "authentication",
+            "security",
+            "Go"
+          ],
           "priority": 2
         },
         {
           "id": "flix-tracking",
           "text": "Implemented backend support for live tracking, geo-fencing, and route optimization, contributing to approximately 10% lower ride wait times.",
-          "tags": ["Go", "geospatial", "real-time"],
+          "tags": [
+            "Go",
+            "geospatial",
+            "real-time"
+          ],
           "priority": 2
         },
         {
           "id": "flix-collaboration",
           "text": "Collaborated in a 5-member agile team, handled 20+ pull requests, and authored internal API documentation for developer onboarding.",
-          "tags": ["Agile", "collaboration", "documentation"],
+          "tags": [
+            "Agile",
+            "collaboration",
+            "documentation"
+          ],
           "priority": 3
         }
-      ]
+      ],
+      "productLink": "https://play.google.com/store/apps/details?id=com.triply.app",
+      "productLinkLabel": "App Link"
     },
     {
       "company": "Zalco Technologies",
@@ -141,67 +219,101 @@
         {
           "id": "zalco-messaging",
           "text": "Built a real-time messaging backend supporting 100+ concurrent users using Express.js, TypeScript, and Socket.io.",
-          "tags": ["Node.js", "Express.js", "TypeScript", "Socket.io", "WebSockets", "real-time"],
+          "tags": [
+            "Node.js",
+            "Express.js",
+            "TypeScript",
+            "Socket.io",
+            "WebSockets",
+            "real-time"
+          ],
           "priority": 1
         },
         {
           "id": "zalco-mongo-perf",
           "text": "Improved MongoDB query performance by 32% through schema refactoring and compound indexing.",
-          "tags": ["MongoDB", "performance", "databases"],
+          "tags": [
+            "MongoDB",
+            "performance",
+            "databases"
+          ],
           "priority": 1
         },
         {
           "id": "zalco-features",
           "text": "Implemented features including file attachments, location sharing, chat deletion, message forwarding, and broadcast messaging.",
-          "tags": ["Node.js", "features"],
+          "tags": [
+            "Node.js",
+            "features"
+          ],
           "priority": 3
         }
       ]
     }
   ],
-
   "projects": [
     {
       "id": "job-outreach-platform",
       "name": "AI Job Outreach Automation Platform",
-      "link": "TODO",
-      "_linkComment": "TODO: GitHub repo URL — rendered as 'Github Repo' anchor text on the PDF.",
-      "stack": ["Go", "Python", "FastAPI", "PostgreSQL", "Redis", "Docker"],
+      "link": "https://github.com/anuragverma57/AI-job-outreach",
+      "stack": [
+        "Go",
+        "Python",
+        "FastAPI",
+        "PostgreSQL",
+        "Redis",
+        "Docker"
+      ],
       "bullets": [
         {
           "id": "proj-overview",
           "text": "Built a microservices-based platform to automate job applications with AI-generated cold emails, resume matching, scheduling workflows, and end-to-end application tracking.",
-          "tags": ["microservices", "architecture"],
+          "tags": [
+            "microservices",
+            "architecture"
+          ],
           "priority": 1
         },
         {
           "id": "proj-services",
           "text": "Designed and implemented backend microservices for API, scheduler, worker, and AI processing using Go, FastAPI, Redis queues, and PostgreSQL, implementing asynchronous job execution, retry mechanisms, and service-to-service communication.",
-          "tags": ["Go", "FastAPI", "Redis", "PostgreSQL", "microservices", "async"],
+          "tags": [
+            "Go",
+            "FastAPI",
+            "Redis",
+            "PostgreSQL",
+            "microservices",
+            "async"
+          ],
           "priority": 1
         },
         {
           "id": "proj-ai-pipeline",
           "text": "Developed an AI-driven pipeline to parse unstructured job data, extract key fields, select the most relevant resume, and generate personalized outreach emails, significantly reducing manual effort.",
-          "tags": ["AI", "Python", "data processing"],
+          "tags": [
+            "AI",
+            "Python",
+            "data processing"
+          ],
           "priority": 2
         }
       ]
     }
   ],
-
   "achievements": [
     {
       "id": "leetcode",
       "text": "Solved 200+ Data Structures and Algorithms problems on LeetCode.",
-      "link": "TODO",
-      "priority": 1
+      "link": "https://leetcode.com/u/anuragverma57/",
+      "priority": 1,
+      "linkLabel": "Profile"
     },
     {
       "id": "tcs-nqt",
       "text": "Cleared TCS National Qualifier Test with a score of 80.9%, and also qualified TCS Free NQT (PRIME).",
-      "link": "TODO",
-      "priority": 2
+      "link": "https://drive.google.com/file/d/1PqzZDp53fo6A1livQCjWHCTMALZB1bRa/view?usp=sharing",
+      "priority": 2,
+      "linkLabel": "Score Card"
     }
   ]
 }

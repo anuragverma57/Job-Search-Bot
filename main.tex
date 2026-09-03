@@ -1,0 +1,188 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[left=0.25in, right=0.25in, top=0.2in, bottom=0.2in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{fontawesome}
+
+
+% \usepackage{helvet} % Helvetica for sans-serif
+% \renewcommand{\familydefault}{\sfdefault} % Body text in sans-serif
+
+
+\renewcommand{\familydefault}{\rmdefault}
+\newcommand{\headingfont}{\bfseries} % Headings still bold, but same family
+
+
+\newcommand{\namefont}{\sffamily\bfseries\fontsize{28}{34}\selectfont} % Big bold sans-serif name
+
+\usepackage{xcolor}
+
+% Link colors
+\definecolor{navy}{RGB}{51,51,255}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=navy,
+    urlcolor=navy,
+    citecolor=navy
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3.5pt}
+\pagestyle{empty}
+% \titleformat{\section}{\large\bfseries\uppercase}{}{0em}{}[\titlerule]
+\titleformat{\section}{\large\headingfont\uppercase}{}{0em}{}[\titlerule]
+
+
+% \newcommand{\name}[1]{\centerline{\Huge \bfseries #1}}
+\newcommand{\name}[1]{\centerline{\headingfont\fontsize{22}{26}\selectfont\uppercase{#1}}}
+
+
+\newcommand{\contact}[1]{\centerline{#1}}
+\newcommand{\sep}{ \ \textbar\ \ }
+
+\begin{document}
+
+\name{Anurag Verma}
+\vspace{0.3em}
+\contact{+91 9044499810 \sep Lucknow, India}
+\vspace{0.3em}
+\contact{\href{mailto:anurag.av57@gmail.com}{anurag.av57@gmail.com} \sep \href{https://linkedin.com/in/anuragverma57}{LinkedIn} \sep \href{https://github.com/anuragverma57}{GitHub} \sep \href{https://anuragverma57.github.io/}{Portfolio}}
+
+\vspace{-0.4em}
+
+\section*{Professional Summary}
+Backend-focused Software Engineer with experience building scalable APIs and distributed systems using Java, Go and Node.js. Hands-on experience developing production backend services, performance optimizations, and full-stack features.
+
+\vspace{0.4em}
+\noindent
+\begin{minipage}[t]{0.5\textwidth}
+\section*{Technical Skills}
+\textbf{Languages:} Java, Go, JavaScript, SQL \\
+\textbf{Frameworks:} SpringBoot, Node.js, Echo, gRPC, REST \\
+\textbf{Databases:} MongoDB, Redis, PostgreSQL, CouchDB \\
+\textbf{Cloud/DevOps:} Docker, AWS (EC2, S3) \\
+\textbf{Tools:} Postman, VSCode, Excel, Canva \\
+\textbf{Practices:} Agile, CI/CD, Unit Testing, TDD \\
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.42\textwidth}
+\section*{Education}
+\textbf{National Institute of Technology, Srinagar} \\
+Bachelor of Technology \hfill \textit{2021 -- 2025} \\
+CGPA: 7.67
+
+\vspace{0.8em}
+\textbf{St. Don Bosco College, Lakhimpur-Kheri} \\
+Intermediate (CBSE) \hfill \textit{2019 -- 2020} \\
+Score: 83.2\%
+\end{minipage}
+
+
+% \section*{Technical Skills\hspace{7cm}Education}
+% \begin{minipage}[t]{0.6\textwidth}
+% \textbf{Languages:} Java, Go, TypeScript, JavaScript, Python, C++, SQL \\
+% \textbf{Frameworks:} Node.js, Express, FastAPI, Echo, REST, gRPC \\
+% \textbf{Databases:} MongoDB, ArangoDB, MySQL, PostgreSQL \\
+% \textbf{Cloud/DevOps:} Docker, AWS (EC2, S3), Redis \\
+% \textbf{Tools:} Postman, VSCode, Excel, Canva \\
+% \textbf{Practices:} Agile, CI/CD, API Documentation, Unit Testing, TDD \\ 
+% \textbf{Coursework:} DSA, DBMS, CN, OOPs, OS \\
+% \end{minipage}
+% \hfill
+% \begin{minipage}[t]{0.48\textwidth}
+% \textbf{National Institute of Technology, Srinagar} \\
+% Bachelor of Technology \\
+% \textit{2021 -- 2025} \\
+% CGPA: 7.67
+
+% \vspace{0.8em}
+% \textbf{St. Don Bosco College, Lakhimpur-Kheri} \\
+% Intermediate (CBSE) \\
+% \textit{2019 -- 2020} \\
+% Score: 83.2\%
+% \end{minipage}
+
+\vspace{-0.4em}
+\section*{Professional Experience}
+\textbf{RBH Solutions Pvt. Ltd.} — \textbf{Software Developer} \hfill \textit{Oct 2025 -- Present (Patiala, On-site)}
+\begin{itemize}[leftmargin=1.2em]
+
+\item Resolved a production \textbf{WebSocket streaming failure} by implementing a \textbf{chunked streaming pipeline} for \textbf{35 MB payloads}, restoring successful login flows across deployments and supporting rollout from \textbf{35 to 250+ substations}. Supported production deployments across \textbf{HVPNL} and \textbf{MSETCL} through incident triage, backend debugging, and SLA-driven hotfixes.
+
+\item Reduced \textbf{dashboard load time from 8--10 s to under 1 s} by moving search, filtering, and pagination to backend APIs backed by \textbf{PostgreSQL}, and introducing a \textbf{Valkey caching layer} with \textbf{$\sim$70\% cache hit rate}.
+
+\item Reduced \textbf{CouchDB batch processing time from 15--17 minutes to under 20 seconds} by replacing \textbf{N+1 updates} with batch operations for \textbf{10,000+ records}. Built a secure \textbf{SCADA--MDU asset replacement workflow} with \textbf{RBAC}, audit logging, and validation.
+
+\item Led development of the \textbf{Maintenance Automation Module}, translating field requirements into backend workflows and delivering \textbf{10 dashboard modules} from requirements through production while working directly with \textbf{government engineers} during requirement workshops and deployments.
+
+\end{itemize}
+
+
+\vspace{0.4em}
+
+\textbf{Flix Logix India} — \textbf{Software Developer Intern} 
+\href{https://play.google.com/store/apps/details?id=com.triply.app&pcampaignid=web_share}{(App Link)}
+\hfill \textit{Jan 2024 -- Jul 2024 (Remote)}
+\begin{itemize}[leftmargin=1.2em]
+
+\item Built and managed \textbf{30+ REST APIs} using Go (Echo), Redis, and ArangoDB for a \textbf{multi-role cab platform}.
+
+\item Implemented \textbf{OTP-based authentication}, reducing fake rides by \textbf{15\%} and improving user safety by \textbf{20\%}.
+
+\item Implemented backend support for \textbf{live tracking}, \textbf{geo-fencing}, and \textbf{route optimization}, contributing to approximately \textbf{10\% lower ride wait times}.
+
+\item Collaborated in a \textbf{5-member agile team}, handled \textbf{20+ pull requests}, and authored internal API documentation for developer onboarding.
+
+\end{itemize}
+\vspace{0.4em}
+
+\textbf{Zalco Technologies} — \textbf{Backend Developer Intern}
+\hfill \textit{May 2023 -- Dec 2023 (Remote)}
+\begin{itemize}[leftmargin=1.2em]
+
+\item Built a \textbf{real-time messaging backend} supporting \textbf{100+ concurrent users} using Express.js, TypeScript, and Socket.io.
+
+\item Improved \textbf{MongoDB query performance by 32\%} through schema refactoring and compound indexing.
+
+\item Implemented features including \textbf{file attachments}, \textbf{location sharing}, \textbf{chat deletion}, \textbf{message forwarding}, and \textbf{broadcast messaging}.
+
+\end{itemize}
+
+\section*{Technical Projects}
+
+{\textbf{AI Job Outreach Automation Platform}}  \faGithub\ \href{https://github.com/anuragverma57/AI-job-outreach}{Github Repo}
+\hfill \textbf{Go, Python (FastAPI), PostgreSQL, Redis, Docker} \\
+
+\vspace{-0.8em}
+
+\begin{itemize}[leftmargin=1.2em]
+
+\item Built a \textbf{microservices-based platform} to automate job applications with \textbf{AI-generated cold emails, resume matching, scheduling workflows, and end-to-end application tracking}.
+
+\item Designed and implemented \textbf{backend microservices} for API, scheduler, worker, and AI processing using Go, FastAPI, Redis queues, and PostgreSQL, implementing \textbf{asynchronous job execution}, \textbf{retry mechanisms}, and service-to-service communication.
+
+\item Developed an \textbf{AI-driven pipeline} to parse unstructured job data, extract key fields, select the most relevant resume, and generate \textbf{personalized outreach emails}, significantly reducing manual effort.
+
+\end{itemize}
+
+\section*{Achievements \& Certifications}
+\begin{itemize}[leftmargin=1.2em]
+  \item Solved \textbf{200+ Data Structures and Algorithms problems} on LeetCode 
+  \href{https://leetcode.com/u/anuragverma57/}{(Profile)}.
+  
+  \item Cleared \textbf{TCS National Qualifier Test} with a score of \textbf{80.9\%}, and also qualified \textbf{TCS Free NQT (PRIME)} 
+  \href{https://drive.google.com/file/d/1PqzZDp53fo6A1livQCjWHCTMALZB1bRa/view?usp=drive_link}{(Score Card)}.
+  
+  % \item Earned the \textbf{Legacy JavaScript Algorithms and Data Structures} certification from \textbf{freeCodeCamp}
+  % \href{https://www.freecodecamp.org/certification/_anurag_av_/javascript-algorithms-and-data-structures}{(Certificate)}.
+  
+%   \item Completed a \textbf{Power BI Workshop} conducted by \textbf{Office Masters}
+%   \href{https://certx.in/certificate/36a28147-6eed-47a5-8342-e5f926ebba61535789}{(Certificate)}.
+\end{itemize}
+
+
+\end{document}
