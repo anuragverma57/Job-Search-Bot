@@ -77,8 +77,13 @@ check('empty description', filter.countSkillMatches('', ['Java']) === 0);
 console.log('Full evaluation');
 check('good job passes', evaluate({}).pass);
 check('too few skills rejected', !evaluate({ description: 'We use Rust exclusively' }).pass);
+// Derived from config rather than hardcoded: maxPostingAgeDays is a tuning
+// knob, and a test that assumes its value breaks every time it is tuned.
+const maxAge = require('../src/config').filter.maxPostingAgeDays;
 check('stale posting rejected',
-  !evaluate({ posted_at: new Date(Date.now() - 60 * 86400000).toISOString() }).pass);
+  !evaluate({ posted_at: new Date(Date.now() - (maxAge + 5) * 86400000).toISOString() }).pass);
+check('fresh posting accepted',
+  evaluate({ posted_at: new Date(Date.now() - (maxAge - 5) * 86400000).toISOString() }).pass);
 check('too many years rejected',
   !evaluate({ description: 'Java Spring Boot PostgreSQL REST. 8+ years of experience required.' }).pass);
 check('unrelated title rejected', !evaluate({ title: 'Chef de Partie' }).pass);
